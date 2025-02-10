@@ -1,5 +1,5 @@
 # Aprendendo Monngo
-# Cola Banco de Dados MongoDB
+# Cola de comandos do Banco de Dados MongoDB
 
 ## Comandos Básicos
 
