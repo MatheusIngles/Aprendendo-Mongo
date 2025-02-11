@@ -1,5 +1,5 @@
 # Aprendendo Mongo
-# Cola de comandos do Banco de Dados MongoDB
+# Cola Banco de Dados MongoDB
 
 ## Comandos Básicos
 
@@ -9,7 +9,8 @@
 
 ## Sintaxe de Funções
 
-- `db.createCollection("<nome>")` - Cria uma coleção.
+- `db.createCollection("<nome>", { capped: true, size: 1000000, max: 100 }, { autoIndexId: false })` - Cria uma coleção com limites opcionais.
+- `show collections` - Lista as coleções do banco de dados.
 - `db.dropDatabase()` - Exclui o banco de dados.
 - `db.<coleção>.insertOne({})` - Insere um documento na coleção.
   - Se a coleção não existir, ela será criada automaticamente.
@@ -32,13 +33,21 @@
 
 ### Operadores Úteis:
 - `{ $exists: false | true }` - Filtra documentos que possuem ou não um campo.
-- Exemplo:
-  ```js
-  db.students.updateMany(
-    { nota: { $exists: false } },
-    { $set: { nota: 1 } }
-  )
-  ```
+- `{ $ne: "" }` - Retorna documentos onde um campo **não seja** igual ao valor especificado.
+- `{ $lt: valor }` - Menor que.
+- `{ $lte: valor }` - Menor ou igual.
+- `{ $gt: valor }` - Maior que.
+- `{ $gte: valor }` - Maior ou igual.
+- `{ $in: [valores] }` - Retorna documentos onde o campo tem um dos valores listados.
+- `{ $nin: [valores] }` - Retorna documentos onde o campo **não** tem nenhum dos valores listados.
+
+Exemplo:
+```js
+ db.students.updateMany(
+   { nota: { $exists: false } },
+   { $set: { nota: 1 } }
+ )
+```
 
 ## Remoção de Documentos
 
@@ -62,10 +71,31 @@
   db.students.find({}, { name: 1 })
   ```
 
+### Operadores Lógicos
+
+- `{ $and: [{},{}] }` - Aplica uma condição **E**.
+- `{ $or: [{},{}] }` - Aplica uma condição **OU**.
+- `{ $nor: [{},{}] }` - Retorna documentos que **não** correspondem a nenhuma condição.
+- `{ $not: {} }` - Equivalente ao operador **!** da programação.
+
 ### Ordenação e Limite
 
 - `db.students.find().sort({ name: 1 | -1 })` - Ordena alfabeticamente (`1`) ou em ordem reversa (`-1`).
 - `db.students.find().limit(N)` - Limita a quantidade de documentos retornados.
+
+## Índices
+
+- `db.students.createIndex({ name: 1 })` - Cria um índice para otimizar buscas.
+- `db.students.getIndexes()` - Lista os índices existentes.
+- `db.students.find({ name: "Lucas" }).explain("executionStats")` - Mostra informações sobre a performance da consulta.
+
+Exemplo de saída de `getIndexes()`:
+```js
+[
+  { v: 2, key: { _id: 1 }, name: "_id_" },
+  { v: 2, key: { name: 1 }, name: "name_1" }
+]
+```
 
 ## Tipos de Dados
 
@@ -108,4 +138,5 @@ Em vez de criar múltiplas tabelas, podemos utilizar objetos aninhados para repr
    }
  })
 ```
+
 
