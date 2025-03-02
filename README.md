@@ -143,5 +143,5 @@ Em vez de criar múltiplas tabelas, podemos utilizar objetos aninhados para repr
    }
  })
 ```
-
-
+## Schemas
+Em mongo podemos usar tando a ideia de um schema placeholder quando um schema caotico que se modula conforme o nescessario, o mongo em si recomenda e prega o uso caotico, todavia como programadores criar uma base é recomendado e para quando lidamos com codigo.
