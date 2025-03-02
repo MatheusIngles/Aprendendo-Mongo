@@ -55,6 +55,7 @@ Exemplo:
 - `db.students.deleteMany({ filtro })` - Remove múltiplos documentos.
 
 ## Consultas (`find`)
+### Find retorna um cursor não todos os dados. Caso queira retornar todos use .toArray() para retorna-los.
 
 - `db.<coleção>.find({},{})` - Equivalente ao `SELECT *` em SQL.
   - Pode receber `{query}, {projection}`.
