@@ -56,7 +56,11 @@ Exemplo:
 
 ## Consultas (`find`)
 ### Find retorna um cursor não todos os dados. Caso queira retornar todos use .toArray() para retorna-los.
-
+- Ele aceita um .forEach() depois que recebe uma função lambda que muda a sintaxe dependendo da linguagem. Exemplo:
+  ```js:
+  db.passengers.find().forEach((passengerDATA) => {printjson(passengerData)})
+  ```
+  
 - `db.<coleção>.find({},{})` - Equivalente ao `SELECT *` em SQL.
   - Pode receber `{query}, {projection}`.
 - Exemplo de busca:
