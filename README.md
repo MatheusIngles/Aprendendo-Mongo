@@ -15,6 +15,7 @@
 - `db.<coleção>.insertOne({})` - Insere um documento na coleção.
   - Se a coleção não existir, ela será criada automaticamente.
 - `db.<coleção>.insertMany([{},{}])` - Insere múltiplos documentos em uma coleção.
+- `db.status` - ve justamente o status do banco de dados.
 
 ## Atualizações
 
@@ -106,7 +107,7 @@ Exemplo de saída de `getIndexes()`:
 
 ### Tipos Padrões
 - **String**: `"Pedro123"` ou `'Pedro123'`
-- **Integer**: `1234`
+- **Integer**: `1234` (se for declarado em um mongosh ele é sempre considerado double mesmo com sem o ".", devido aos mongosh ser baseado em javascript)
 - **Double/Float**: `8.2`
 - **Boolean**: `true` ou `false`
 - **Null**: `null` (usado como placeholder)
@@ -144,4 +145,4 @@ Em vez de criar múltiplas tabelas, podemos utilizar objetos aninhados para repr
  })
 ```
 ## Schemas
-Em mongo podemos usar tando a ideia de um schema placeholder quando um schema caotico que se modula conforme o nescessario, o mongo em si recomenda e prega o uso caotico, todavia como programadores criar uma base é recomendado e para quando lidamos com codigo.
+Em mongo podemos usar tando a ideia de um schema placeholder quando um schema caotico que se modula conforme o nescessario, o mongo em si recomenda e prega o uso caotico, todavia como programadores criar uma base é recomendado e para quando lidamos com codigo. Assim tendo abordagem como a do meio e a mais a direita sendo mais frequentes. 
