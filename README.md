@@ -146,3 +146,9 @@ Em vez de criar múltiplas tabelas, podemos utilizar objetos aninhados para repr
 ```
 ## Schemas
 Em mongo podemos usar tando a ideia de um schema placeholder quando um schema caotico que se modula conforme o nescessario, o mongo em si recomenda e prega o uso caotico, todavia como programadores criar uma base é recomendado e para quando lidamos com codigo. Assim tendo abordagem como a do meio e a mais a direita sendo mais frequentes. 
+
+### LookUp e aggregate
+Isso serve para quando vc tem mais de uma coleção e quer relacionalas entre si para assim poupar o tempo de fazer 2 finds no sistema. Com o lookUp é similar ao INNER JOIN em sql. Exemplo:
+```js
+  db.books.([{$lookup:{from: "authors", localField: "authors", foreignField: "_id", as: "creators"}}]).preety()
+```
