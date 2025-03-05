@@ -152,3 +152,49 @@ Isso serve para quando vc tem mais de uma coleção e quer relacionalas entre si
 ```js
   db.books.([{$lookup:{from: "authors", localField: "authors", foreignField: "_id", as: "creators"}}]).preety()
 ```
+
+### Validação
+Similar ao uso de triggers para enviar um erro ou aviso quando vc inseri no sistema, validetion aki acabar com fazer isso ele envia um log, erro, ou algo a sua escolha para o usuario caso ele insira errado o dado. Alem disso voce pode escolher se vai ser para todos os inserts e updates ou somente para inserts e updates novos. 
+
+```js
+db.createCollection('posts', {
+  validator: {
+    $jsonSchema: {
+      bsonType: 'object',
+      required: ['title', 'text', 'creator', 'comments'],
+      properties: {
+        title: {
+          bsonType: 'string',
+          description: 'must be a string and is required'
+        },
+        text: {
+          bsonType: 'string',
+          description: 'must be a string and is required'
+        },
+        creator: {
+          bsonType: 'objectId',
+          description: 'must be an objectid and is required'
+        },
+        comments: {
+          bsonType: 'array',
+          description: 'must be an array and is required',
+          items: {
+            bsonType: 'object',
+            required: ['text', 'author'],
+            properties: {
+              text: {
+                bsonType: 'string',
+                description: 'must be a string and is required'
+              },
+              author: {
+                bsonType: 'objectId',
+                description: 'must be an objectid and is required'
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+});
+```
